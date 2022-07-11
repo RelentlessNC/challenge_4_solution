@@ -53,16 +53,19 @@ function setTime() {
 
 function displayQuestion(index) {
     messageP.textContent = allQs[index][0];
+    // inserting the text from choices 1-4 onto the list items as choices to select
     li1.textContent = allQs[index][1];
     li2.textContent = allQs[index][2];
     li3.textContent = allQs[index][3];
     li4.textContent = allQs[index][4];
+    // append the question and the answers to the qCard
     qCard.appendChild(messageP);
     qCard.appendChild(answersL);
     answersL.appendChild(li1);
     answersL.appendChild(li2);
     answersL.appendChild(li3);
     answersL.appendChild(li4);
+    // add a click event listener to each choice and pass the question number and the choice selected
     li1.addEventListener("click", checkAnswer(index, 1));
     li2.addEventListener("click", checkAnswer(index, 2));
     li3.addEventListener("click", checkAnswer(index, 3));
@@ -70,6 +73,7 @@ function displayQuestion(index) {
 }
 
 function checkAnswer(index, selection){
+    // index is the question number and selection is the choice the user selected
     if (allQs[index][5] == allQs[index][selection]){
         console.log("Correct");
     }
