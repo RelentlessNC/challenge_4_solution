@@ -1,0 +1,55 @@
+:root{
+    
+}
+
+html,body{
+    padding: 1% 5%;
+    font-size: 1.2em;
+}
+
+#top{
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.high-score-button{
+    font-weight: bold;
+    background-color: purple;
+    color: white;
+    border-radius: 10px;
+}
+
+#quiz-card{
+    display: flex;
+    justify-content: center;
+    font-size: 1.4em;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#message{
+    font-size: 2em;
+}
+
+.choices{
+    justify-content: flex-start;
+    list-style: none;
+    margin: 2%;
+    width: 20%;
+}
+
+.choice{
+    margin: 4%;
+    padding: 4%;
+    background-color: purple;
+    color: white;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.choice:hover{
+    background-color: #CBC3E3;
+    color: black;
+}
