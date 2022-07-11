@@ -1,3 +1,13 @@
+/*eslint-env browser*/
+
+var qCard = document.getElementById("quiz-card"),
+    pageTop = document.getElementById("top"),
+    timer = document.getElementById("timer"),
+
+    qCount = 0,
+    index = '',
+    selection = '';
+
 var allQs = [
     /*Question 1*/
         ["Commonly used data types do NOT include:", "strings", "booleans", "alerts", "numbers", "alerts"],
@@ -10,26 +20,24 @@ var allQs = [
     /*Question 5*/
         ["A very useful tool used during development and debugging for printing content to the debugger is: ", "JavaScript", "terminal/bash", "for loops", "console.log", "console.log"]
 ],
-    qCount = 0,
-    messageP = document.getElementById("message"),
-    choices = document.getElementById("choices"),
-    qCard = document.getElementById("quiz-card"),
-    pageTop = document.getElementById("top"),
-    timer = document.getElementById("timer"),
+
+
     messageP = document.createElement("p"),
     answersL = document.createElement("ul"),
     li1 = document.createElement("li"),
     li2 = document.createElement("li"),
     li3 = document.createElement("li"),
-    li4 = document.createElement("li");
-    messageP.className = "message",
+    li4 = document.createElement("li"),
+    questionResult = document.createElement("p");
+
+messageP.className = "message",
     answersL.className = "choices",
     li1.className = "choice",
     li2.className = "choice",
     li3.className = "choice",
     li4.className = "choice";
 
-var secondsLeft = 60; 
+var secondsLeft = 60;
 
 function setTime() {
     // Sets interval in variable
@@ -38,6 +46,7 @@ function setTime() {
 
         if (qCount < allQs.length && secondsLeft % 12 == 0) {
             // Calls function to display question/message
+            index = qCount;
             displayQuestion(qCount);
             qCount++;
         }
@@ -66,21 +75,55 @@ function displayQuestion(index) {
     answersL.appendChild(li3);
     answersL.appendChild(li4);
     // add a click event listener to each choice and pass the question number and the choice selected
-    li1.addEventListener("click", checkAnswer(index, 1));
-    li2.addEventListener("click", checkAnswer(index, 2));
-    li3.addEventListener("click", checkAnswer(index, 3));
-    li4.addEventListener("click", checkAnswer(index, 4));
+    li1.addEventListener("click", checkAnswer1);
+    li2.addEventListener("click", checkAnswer2);
+    li3.addEventListener("click", checkAnswer3);
+    li4.addEventListener("click", checkAnswer4);
 }
 
-function checkAnswer(index, selection){
+function checkAnswer1() {
     // index is the question number and selection is the choice the user selected
-    if (allQs[index][5] == allQs[index][selection]){
-        console.log("Correct");
-    }
-    else{
-        console.log("incorrect");
+    if (allQs[index][5] == allQs[index][1]) {
+        questionResult.textContent = "Correct!";
+        qCard.appendChild(questionResult);
+    } else {
+        questionResult.textContent = "Incorrect!";
+        qCard.appendChild(questionResult);
     }
 }
-    
+
+function checkAnswer2() {
+    // index is the question number and selection is the choice the user selected
+    if (allQs[index][5] == allQs[index][2]) {
+        questionResult.textContent = "Correct!";
+        qCard.appendChild(questionResult);
+    } else {
+        questionResult.textContent = "Incorrect!";
+        qCard.appendChild(questionResult);
+    }
+}
+
+function checkAnswer3() {
+    // index is the question number and selection is the choice the user selected
+    if (allQs[index][5] == allQs[index][3]) {
+        questionResult.textContent = "Correct!";
+        qCard.appendChild(questionResult);
+    } else {
+        questionResult.textContent = "Incorrect!";
+        qCard.appendChild(questionResult);
+    }
+}
+
+function checkAnswer4() {
+    // index is the question number and selection is the choice the user selected
+    if (allQs[index][5] == allQs[index][4]) {
+        questionResult.textContent = "Correct!";
+        qCard.appendChild(questionResult);
+    } else {
+        questionResult.textContent = "Incorrect!";
+        qCard.appendChild(questionResult);
+    }
+}
+
 
 setTime();
