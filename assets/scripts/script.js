@@ -79,16 +79,15 @@ function displayQuestion(index) {
     li2.addEventListener("click", checkAnswer2);
     li3.addEventListener("click", checkAnswer3);
     li4.addEventListener("click", checkAnswer4);
+    qCard.appendChild(questionResult);
 }
 
 function checkAnswer1() {
     // index is the question number and selection is the choice the user selected
     if (allQs[index][5] == allQs[index][1]) {
         questionResult.textContent = "Correct!";
-        qCard.appendChild(questionResult);
     } else {
         questionResult.textContent = "Incorrect!";
-        qCard.appendChild(questionResult);
     }
 }
 
@@ -96,10 +95,8 @@ function checkAnswer2() {
     // index is the question number and selection is the choice the user selected
     if (allQs[index][5] == allQs[index][2]) {
         questionResult.textContent = "Correct!";
-        qCard.appendChild(questionResult);
     } else {
         questionResult.textContent = "Incorrect!";
-        qCard.appendChild(questionResult);
     }
 }
 
@@ -107,10 +104,8 @@ function checkAnswer3() {
     // index is the question number and selection is the choice the user selected
     if (allQs[index][5] == allQs[index][3]) {
         questionResult.textContent = "Correct!";
-        qCard.appendChild(questionResult);
     } else {
         questionResult.textContent = "Incorrect!";
-        qCard.appendChild(questionResult);
     }
 }
 
@@ -118,10 +113,8 @@ function checkAnswer4() {
     // index is the question number and selection is the choice the user selected
     if (allQs[index][5] == allQs[index][4]) {
         questionResult.textContent = "Correct!";
-        qCard.appendChild(questionResult);
     } else {
         questionResult.textContent = "Incorrect!";
-        qCard.appendChild(questionResult);
     }
 }
 
