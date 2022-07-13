@@ -3,22 +3,58 @@
 var qCard = document.getElementById("quiz-card"),
     pageTop = document.getElementById("top"),
     timer = document.getElementById("timer"),
-
+    index = 0,
     qCount = 0,
-    index = '',
     selection = '';
 
+//var allQs = [
+//    /*Question 1*/
+//        ["Commonly used data types do NOT include:", "strings", "booleans", "alerts", "numbers", "alerts"],
+//    /*Question 2*/
+//        ["The condition in an if/else statement is enclosed with:", "quotes", "curly braces", "parenthesis", "square brackets", "parenthesis"],
+//    /*Question 3*/
+//        ["Arrays in JavaScript can be used to store ___", "numbers and strings", "booleans", "other arrays", "all of the above", "all of the above"],
+//    /*Question 4*/
+//        ["String values must be enclosed within ___ when being assigned to variables.", "commas", "curly braces", "quotes", "parenthesis", "quotes"],
+//    /*Question 5*/
+//        ["A very useful tool used during development and debugging for printing content to the debugger is: ", "JavaScript", "terminal/bash", "for loops", "console.log", "console.log"]
+//],
 var allQs = [
-    /*Question 1*/
-        ["Commonly used data types do NOT include:", "strings", "booleans", "alerts", "numbers", "alerts"],
-    /*Question 2*/
-        ["The condition in an if/else statement is enclosed with:", "quotes", "curly braces", "parenthesis", "square brackets", "parenthesis"],
-    /*Question 3*/
-        ["Arrays in JavaScript can be used to store ___", "numbers and strings", "booleans", "other arrays", "all of the above", "all of the above"],
-    /*Question 4*/
-        ["String values must be enclosed within ___ when being assigned to variables.", "commas", "curly braces", "quotes", "parenthesis", "quotes"],
-    /*Question 5*/
-        ["A very useful tool used during development and debugging for printing content to the debugger is: ", "JavaScript", "terminal/bash", "for loops", "console.log", "console.log"]
+        {
+            question_number: 1,
+            question: "Commonly used data types do NOT include:",
+            options: ["strings", "booleans", "alerts", "numbers"],
+            answer: "alerts"
+
+    },
+        {
+            question_number: 2,
+            question: "The condition in an if/else statement is enclosed with:",
+            options: ["quotes", "curly braces", "parenthesis", "square brackets"],
+            answer: "parenthesis"
+
+    },
+        {
+            question_number: 3,
+            question: "Arrays in JavaScript can be used to store ___",
+            options: ["numbers and strings", "booleans", "other arrays", "all of the above"],
+            answer: "all of the above"
+
+
+    },
+        {
+            question_number: 4,
+            question: "String values must be enclosed within ___ when being assigned to variables.",
+            options: ["commas", "curly braces", "quotes", "parenthesis"],
+            answer: "quotes"
+
+    },
+        {
+            question_number: 5,
+            question: "A very useful tool used during development and debugging for printing content to the debugger is: ",
+            options: ["JavaScript", "terminal/bash", "for loops", "console.log"],
+            answer: "console.log"
+    },
 ],
 
 
@@ -37,20 +73,19 @@ messageP.className = "message",
     li3.className = "choice",
     li4.className = "choice";
 
+
 var secondsLeft = 60;
+
+function startQuiz() {
+    displayQuestions();
+    setTime();
+
+}
 
 function setTime() {
     // Sets interval in variable
     var timerInterval = setInterval(function () {
         timer.textContent = "Time: " + secondsLeft;
-
-        if (qCount < allQs.length && secondsLeft % 12 == 0) {
-            // Calls function to display question/message
-            index = qCount;
-            displayQuestion(qCount);
-            qCount++;
-        }
-
         if (secondsLeft == 0) {
             clearInterval(timerInterval);
             qCard.removeChild(messageP);
@@ -60,13 +95,13 @@ function setTime() {
     }, 1000);
 }
 
-function displayQuestion(index) {
-    messageP.textContent = allQs[index][0];
+function displayQuestions() {
+    messageP.textContent = allQs[index].question;
     // inserting the text from choices 1-4 onto the list items as choices to select
-    li1.textContent = allQs[index][1];
-    li2.textContent = allQs[index][2];
-    li3.textContent = allQs[index][3];
-    li4.textContent = allQs[index][4];
+    li1.textContent = allQs[index].options[0];
+    li2.textContent = allQs[index].options[1];
+    li3.textContent = allQs[index].options[2];
+    li4.textContent = allQs[index].options[3];
     // append the question and the answers to the qCard
     qCard.appendChild(messageP);
     qCard.appendChild(answersL);
@@ -79,44 +114,55 @@ function displayQuestion(index) {
     li2.addEventListener("click", checkAnswer2);
     li3.addEventListener("click", checkAnswer3);
     li4.addEventListener("click", checkAnswer4);
-    qCard.appendChild(questionResult);
+    index++;
 }
 
 function checkAnswer1() {
+    console.log("Test 1");
     // index is the question number and selection is the choice the user selected
-    if (allQs[index][5] == allQs[index][1]) {
+    if (allQs[index].answer == allQs[index].options[0]) {
         questionResult.textContent = "Correct!";
     } else {
         questionResult.textContent = "Incorrect!";
     }
+    qCard.appendChild(questionResult);
+    displayQuestions();
 }
 
 function checkAnswer2() {
+    console.log("Test 2");
     // index is the question number and selection is the choice the user selected
-    if (allQs[index][5] == allQs[index][2]) {
+    if (allQs[index].answer == allQs[index].options[1]) {
         questionResult.textContent = "Correct!";
     } else {
         questionResult.textContent = "Incorrect!";
     }
+    qCard.appendChild(questionResult);
+    displayQuestions();
 }
 
 function checkAnswer3() {
+    console.log("Test 3");
     // index is the question number and selection is the choice the user selected
-    if (allQs[index][5] == allQs[index][3]) {
+    if (allQs[index].answer == allQs[index].options[2]) {
         questionResult.textContent = "Correct!";
     } else {
         questionResult.textContent = "Incorrect!";
     }
+    qCard.appendChild(questionResult);
+    displayQuestions();
 }
 
 function checkAnswer4() {
+    console.log("Test 4");
     // index is the question number and selection is the choice the user selected
-    if (allQs[index][5] == allQs[index][4]) {
+    if (allQs[index].answer == allQs[index].options[3]) {
         questionResult.textContent = "Correct!";
     } else {
         questionResult.textContent = "Incorrect!";
     }
+    qCard.appendChild(questionResult);
+    displayQuestions();
 }
 
-
-setTime();
+startQuiz();
