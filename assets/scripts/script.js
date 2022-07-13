@@ -1,11 +1,16 @@
 /*eslint-env browser*/
 
-var qCard = document.getElementById("quiz-card"),
+var card = document.getElementById("card"),
     pageTop = document.getElementById("top"),
-    timer = document.getElementById("timer"),
-    index = 0,
+    timer = document.getElementById("timer");
+
+
+var index = 0,
     qCount = 0,
-    selection = '';
+    selection = '',
+    score = 0,
+    high_scores = [];
+
 
 //var allQs = [
 //    /*Question 1*/
@@ -65,6 +70,8 @@ var allQs = [
     li3 = document.createElement("li"),
     li4 = document.createElement("li"),
     questionResult = document.createElement("p");
+var submit_button = document.createElement("button");
+submit_button.innerHTML = "Submit";
 
 messageP.className = "message",
     answersL.className = "choices",
@@ -73,8 +80,15 @@ messageP.className = "message",
     li3.className = "choice",
     li4.className = "choice";
 
+// add a click event listener to each choice and pass the question number and the choice selected
+li1.addEventListener("click", checkAnswer1);
+li2.addEventListener("click", checkAnswer2);
+li3.addEventListener("click", checkAnswer3);
+li4.addEventListener("click", checkAnswer4);
+submit_button.addEventListener("click", submit_score);
 
-var secondsLeft = 60;
+
+var secondsLeft = 5;
 
 function startQuiz() {
     displayQuestions();
@@ -88,33 +102,30 @@ function setTime() {
         timer.textContent = "Time: " + secondsLeft;
         if (secondsLeft == 0) {
             clearInterval(timerInterval);
-            qCard.removeChild(messageP);
-            qCard.removeChild(answersL);
+            endOfQuiz();
         }
         secondsLeft--;
     }, 1000);
 }
 
 function displayQuestions() {
+    if (index == allQs.length) {
+        endOfQuiz();
+    }
     messageP.textContent = allQs[index].question;
     // inserting the text from choices 1-4 onto the list items as choices to select
     li1.textContent = allQs[index].options[0];
     li2.textContent = allQs[index].options[1];
     li3.textContent = allQs[index].options[2];
     li4.textContent = allQs[index].options[3];
-    // append the question and the answers to the qCard
-    qCard.appendChild(messageP);
-    qCard.appendChild(answersL);
+    // append the question and the answers to the card
+    card.appendChild(messageP);
+    card.appendChild(answersL);
     answersL.appendChild(li1);
     answersL.appendChild(li2);
     answersL.appendChild(li3);
     answersL.appendChild(li4);
-    // add a click event listener to each choice and pass the question number and the choice selected
-    li1.addEventListener("click", checkAnswer1);
-    li2.addEventListener("click", checkAnswer2);
-    li3.addEventListener("click", checkAnswer3);
-    li4.addEventListener("click", checkAnswer4);
-    index++;
+
 }
 
 function checkAnswer1() {
@@ -122,10 +133,12 @@ function checkAnswer1() {
     // index is the question number and selection is the choice the user selected
     if (allQs[index].answer == allQs[index].options[0]) {
         questionResult.textContent = "Correct!";
+        score++;
     } else {
         questionResult.textContent = "Incorrect!";
     }
-    qCard.appendChild(questionResult);
+    index++;
+    card.appendChild(questionResult);
     displayQuestions();
 }
 
@@ -134,10 +147,12 @@ function checkAnswer2() {
     // index is the question number and selection is the choice the user selected
     if (allQs[index].answer == allQs[index].options[1]) {
         questionResult.textContent = "Correct!";
+        score++;
     } else {
         questionResult.textContent = "Incorrect!";
     }
-    qCard.appendChild(questionResult);
+    index++;
+    card.appendChild(questionResult);
     displayQuestions();
 }
 
@@ -146,10 +161,12 @@ function checkAnswer3() {
     // index is the question number and selection is the choice the user selected
     if (allQs[index].answer == allQs[index].options[2]) {
         questionResult.textContent = "Correct!";
+        score++;
     } else {
         questionResult.textContent = "Incorrect!";
     }
-    qCard.appendChild(questionResult);
+    index++;
+    card.appendChild(questionResult);
     displayQuestions();
 }
 
@@ -158,11 +175,32 @@ function checkAnswer4() {
     // index is the question number and selection is the choice the user selected
     if (allQs[index].answer == allQs[index].options[3]) {
         questionResult.textContent = "Correct!";
+        score++;
     } else {
         questionResult.textContent = "Incorrect!";
     }
-    qCard.appendChild(questionResult);
+    index++;
+    card.appendChild(questionResult);
     displayQuestions();
+}
+
+function endOfQuiz() {
+    card.removeChild(messageP);
+    card.removeChild(answersL);
+    card.removeChild(questionResult);
+    var all_done = document.createElement("p");
+    all_done.innerHTML = "All done!<br>Your score is " + score;
+    card.appendChild(all_done);
+    var form = document.createElement("form");
+    card.appendChild(form);
+    var initials_input = document.createElement("input");
+    initials_input.setAttribute("type", "text");
+    form.appendChild(initials_input);
+    form.appendChild(submit_button);
+}
+
+function submit_score(){
+    
 }
 
 startQuiz();
