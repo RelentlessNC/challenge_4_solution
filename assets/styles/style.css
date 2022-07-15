@@ -1,13 +1,17 @@
 :root{
-    
+    --lt1: #FDDDFC;
+    --lt2: #F415ED;
+    --md1: #9A0794;
+    --dk1: #3A0039;
 }
 
 html,body{
     padding: 1% 5%;
     font-size: 1.2em;
+    background-color: var(--dk1);
 }
 
-#top{
+.top{
     font-weight: bold;
     display: flex;
     justify-content: space-between;
@@ -16,17 +20,52 @@ html,body{
 
 .high-score-button{
     font-weight: bold;
-    background-color: purple;
+    background-color: var(--md1);
     color: white;
     border-radius: 10px;
+    border-color: gold;
 }
 
-#quiz-card{
+.timer{
+    color: gold;
+}
+
+.start-button, .submit-button{
+    font-size: 1.2em;
+    margin: 4%;
+    padding: 1%;
+    background-color: var(--md1);
+    color: white;
+    border-radius: 5px;
+    border: 2px solid var(--dk1);
+    cursor: pointer;
+}
+
+.initials-input{
+    padding: 1%;
+    margin: 4%;
+    border-radius: 5px;
+    font-size: 1.2em;
+    background-color: var(--md1);
+    color: white;
+}
+
+.initials-input::placeholder{
+    color: darkgray;
+}
+
+
+.card{
     display: flex;
     justify-content: center;
+    align-content: center;
     font-size: 1.4em;
     flex-wrap: wrap;
     flex-direction: column;
+    border-color: gold;
+    border-width: thick;
+    border-style: inset;
+    background-color: var(--lt1);
 }
 
 #message{
@@ -43,14 +82,14 @@ html,body{
 .choice{
     margin: 4%;
     padding: 4%;
-    background-color: purple;
+    background-color: var(--md1);
     color: white;
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid var(--dk1);
     cursor: pointer;
 }
 
 .choice:hover{
-    background-color: #CBC3E3;
+    background-color: var(--lt1);
     color: black;
 }
