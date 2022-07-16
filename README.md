@@ -1,3 +1,11 @@
+The task for this project was to create a timed online quiz that creates and displays content dynamically.  The quiz consists of 5 questions, each question has 4 choices.  When a question is answered incorrectly, time is reduced.  The quiz ends when the timer reaches 0 or all questions have been answered.  At the end of the quiz you may choose to input your initials, or not.  When you view high scores, you see all the scores for that session displayed in a table format.
+
+[a screenshot of my project's home screen.]("./assets/images/myscreenshot.png").
+[my code repository](https://github.com/RelentlessNC/challenge_4_solution.git).
+[my code's live URL](https://relentlessnc.github.io/challenge_4_solution/).
+
+
+
 # User Story
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores

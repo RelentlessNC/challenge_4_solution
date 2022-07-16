@@ -30,7 +30,7 @@ html,body{
     color: gold;
 }
 
-.start-button, .submit-button{
+.start-button, .submit-button, .home-button{
     font-size: 1.2em;
     margin: 4%;
     padding: 1%;
@@ -93,3 +93,14 @@ html,body{
     background-color: var(--lt1);
     color: black;
 }
+
+table{
+    padding: 20%;
+}
+
+th, td, caption{
+    padding-right: 100px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
